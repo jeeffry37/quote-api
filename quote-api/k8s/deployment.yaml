@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: quote-api
-          image: jeeffry/quote-api:1.1  # <-- reemplaza
+          image: jeeffry/quote-api:1.1 
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
@@ -33,3 +33,4 @@ spec:
           resources:
             requests: { cpu: "50m", memory: "64Mi" }
             limits:   { cpu: "250m", memory: "256Mi" }
+
