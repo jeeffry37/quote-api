@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "api" {
       spec {
         container {
           name  = "quote-api"
-          image = "jeeffry/quote-api:1.0"   # 👈 pon aquí tu usuario DockerHub real
+          image = "jeeffry/quote-api:1.0"
           port {
             container_port = 5000
           }
@@ -60,3 +60,4 @@ resource "kubernetes_service" "api" {
     type = "NodePort"
   }
 }
+
