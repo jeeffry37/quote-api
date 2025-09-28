@@ -1,4 +1,4 @@
-📖 README – Quote API (Frases Motivacionales)
+Quote API (Frases Motivacionales)
 📌 Descripción del proyecto
 
 Quote API es una aplicación cloud-native construida con Python (Flask) que devuelve frases motivacionales.
