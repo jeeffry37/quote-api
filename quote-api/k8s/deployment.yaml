@@ -20,11 +20,11 @@ spec:
           ports:
             - containerPort: 5000
           readinessProbe:
-            httpGet: { path: /healthz, port: 5000 }
+            httpGet: { path: /healthz, port: 5000 } #indica si el pod está listo para recibir tráfico
             initialDelaySeconds: 3
             periodSeconds: 5
           livenessProbe:
-            httpGet: { path: /healthz, port: 5000 }
+            httpGet: { path: /healthz, port: 5000 } #indica si el pod está vivo o debe reiniciarse.
             initialDelaySeconds: 10
             periodSeconds: 10
           env:
@@ -33,4 +33,5 @@ spec:
           resources:
             requests: { cpu: "50m", memory: "64Mi" }
             limits:   { cpu: "250m", memory: "256Mi" }
+
 
