@@ -14,44 +14,63 @@ GET /healthz → health check para Kubernetes.
 GET /metrics → métricas en formato Prometheus.
 
 🚀 Cómo ejecutar el proyecto
+
 🔹 1. Local (Flask)
-# Clonar el repo
-git clone https://github.com/<tu-usuario>/quote-api.git
-cd quote-api
 
-# Crear entorno virtual
-python -m venv venv
-source venv/bin/activate   # (Linux/Mac)
-venv\Scripts\activate      # (Windows)
+**Clonar el repo**
 
-# Instalar dependencias
-pip install -r requirements.txt
+```git clone https://github.com/<tu-usuario>/quote-api.git```
 
-# Ejecutar app
-python app/app.py
+```cd quote-api```
+
+**Crear entorno virtual**
+
+```python -m venv venv```
+
+```source venv/bin/activate ```  # (Linux/Mac)
+
+```venv\Scripts\activate ```     # (Windows)
+
+**Instalar dependencias**
+
+```pip install -r requirements.txt```
+
+**Ejecutar app**
+
+```python app/app.py```
 
 🔹 2. Docker
-# Construir imagen
-docker build -t quote-api:1.0 .
 
-# Ejecutar contenedor
-docker run -d -p 5000:5000 quote-api:1.0
+**Construir imagen**
 
-# Si quieres subirla a DockerHub
-docker tag quote-api:1.0 "usuario de docker"/quote-api:1.0
-docker push "usuario de docker"/quote-api:1.0
+```docker build -t quote-api:1.0 .```
+
+**Ejecutar contenedor**
+
+```docker run -d -p 5000:5000 quote-api:1.0```
+
+**Si quieres subirla a DockerHub**
+
+```docker tag quote-api:1.0 "usuario de docker"/quote-api:1.0```
+
+```docker push "usuario de docker"/quote-api:1.0```
 
 🔹 3. Kubernetes (Minikube / local)
-# Crear namespace
-kubectl apply -f k8s/namespace.yaml
 
-# Crear despliegue y servicio
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+**Crear namespace**
+
+```kubectl apply -f k8s/namespace.yaml```
+
+**Crear despliegue y servicio**
+
+```kubectl apply -f k8s/deployment.yaml```
+
+```kubectl apply -f k8s/service.yaml```
 
 
-# Exponer servicio con NodePort en Minikube
-minikube service -n quote-api quote-api-service --url
+**Exponer servicio con NodePort en Minikube**
+
+```minikube service -n quote-api quote-api-service --url```
 📊 Monitorización
 
 Prometheus scrapea métricas desde /metrics.
