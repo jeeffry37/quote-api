@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: quote-api
+  labels:
+    grafana_dashboard: "1"
+data:
+  dashboards.yaml: |
+    apiVersion: 1
+    providers:
+      - name: 'quote'
+        orgId: 1
+        folder: ''
+        type: file
+        updateIntervalSeconds: 10
+        options:
+          path: /var/lib/grafana/dashboards
+  quote_api_overview.json: |
+    {
+      "schemaVersion": 39,
+      "title": "Quote API - Overview",
+      "refresh": "10s",
+      "panels": [
+        {
+          "type": "stat",
+          "title": "Requests total",
+          "targets": [{ "expr": "sum(http_requests_total)" }],
+          "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 }
+        },
+        {
+          "type": "timeseries",
+          "title": "Requests rate by status",
+          "targets": [{ "expr": "sum by (status) (rate(http_requests_total[5m]))" }],
+          "gridPos": { "x": 6, "y": 0, "w": 18, "h": 8 }
+        },
+        {
+          "type": "timeseries",
+          "title": "Latency p95 by endpoint",
+          "targets": [{
+            "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, endpoint))"
+          }],
+          "gridPos": { "x": 0, "y": 8, "w": 24, "h": 8 }
+        }
+      ]
+    }
